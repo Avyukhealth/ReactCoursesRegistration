@@ -1,0 +1,9 @@
+.sem-selector {
+  color: var(--text-color);
+}
+
+span {
+  font-weight: 200;
+  word-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
+}

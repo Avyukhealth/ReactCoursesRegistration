@@ -17,15 +17,14 @@ export const Ul = styled.ul`
   list-style: none;
 `;
 
-
-
 export default function Header({ name, links, userName, userIcon }) {
   const logf = logo;
 
   return (
     <nav className="flex header">
       <div className="header-image">
-        <img alt="Logo" src="./logo.png" />
+        {/* <img alt="Logo" src="./logo.png" /> */}
+        Logo
       </div>
 
       <div className="flex header-name ">

@@ -4,6 +4,7 @@ import Header from "../header/Header";
 import MyCourses from "../my-courses/MyCourses";
 import SearchBar from "../search-bar/SearchBar";
 import SemSelector from "../sem-selector/SemSelector";
+import Test from "../Test";
 
 /*
 <Header {headerName} {links}/>
@@ -15,12 +16,8 @@ import SemSelector from "../sem-selector/SemSelector";
 
 export default function CoursesPage() {
   return (
-    <div>
-      <Header />
-      <SemSelector />
-      <SearchBar />
-      <MyCourses />
-      <Footer />
+    <div className="fsdad">
+      
     </div>
   );
 }

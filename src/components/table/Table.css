@@ -1,10 +1,12 @@
 .materia-ui-table {
+  border: 2px solid #2c2525;
   justify-content: center;
 }
 
 .materia-ui-table-head {
   /* background-color: var(--table-head-background-color-color) ; */
   background-color: var(--table-head-background-color);
+  position: sticky;
 }
 
 .materia-ui-table th {
@@ -19,7 +21,17 @@
 }
 
 .materia-ui-table-body {
-  background-image: linear-gradient(
+  
+}
+
+.materia-ui-table-row:hover {
+  color: red !important;
+  background-color: #0d243c;
+}
+
+.temp{
+    padding: 10px 30px;
+    background-image: linear-gradient(
     to right bottom,
     #334855,
     #25435c,
@@ -27,9 +39,4 @@
     #233565,
     #312a64
   );
-}
-
-.materia-ui-table-row:hover {
-  color: red !important;
-  background-color: #0d243c;
 }
