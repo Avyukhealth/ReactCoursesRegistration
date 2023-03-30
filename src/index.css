@@ -1,13 +1,75 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* --------- VARIABLES ---------- */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --text-color: white;
+  --table-head-background-color: #3c4a1d;
+  --table-body-background-color: #1a2b4f;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0px;
+  padding: 0px;
+  font: 1.1rem "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* font styling */
+p,
+td,
+input {
+  /* font-family: "Roboto Mono", monospace; */
+  font-family: "Roboto Mono", monospace;
+  word-spacing: 0.3rem;
+  letter-spacing: 0.05rem;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(
+    to right bottom,
+    #334855,
+    #25435c,
+    #1e3d61,
+    #233565,
+    #312a64
+  );
+}
+
+h1 {
+  font-family: "Shantell Sans", cursive;
+  word-spacing: 0.5rem;
+  letter-spacing: 0.1rem;
+  font-size: 1.5rem;
+}
+
+a {
+  color: rgba(255, 255, 255, 0.683);
+  text-decoration: none;
+  padding: 5px;
+}
+
+a:hover {
+  color: red;
+}
+
+.flex {
+  display: flex;
+}
+
+th {
+  font-size: large;
+  font-weight: bolder;
+  word-spacing: 0.3rem;
+  letter-spacing: 0.1rem;
+}
+
+.flex {
+  display: flex;
 }

@@ -1,0 +1,28 @@
+.header {
+  justify-content: space-between;
+  padding: 10px 20px;
+  color: var(--text-color);
+}
+
+.header-image {
+  flex: 1;
+}
+.header-name {
+  flex: 2;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-links-and-profile {
+  justify-content: space-around;
+  flex: 1;
+}
+
+.header-links {
+  gap: 10px;
+}
+
+.user-profile {
+  gap: 10px;
+}

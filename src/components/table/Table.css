@@ -1,0 +1,35 @@
+.materia-ui-table {
+  justify-content: center;
+}
+
+.materia-ui-table-head {
+  /* background-color: var(--table-head-background-color-color) ; */
+  background-color: var(--table-head-background-color);
+}
+
+.materia-ui-table th {
+  color: white;
+  font-size: large;
+  font-weight: bolder;
+}
+
+.materia-ui-table td {
+  color: white;
+  font-weight: 200;
+}
+
+.materia-ui-table-body {
+  background-image: linear-gradient(
+    to right bottom,
+    #334855,
+    #25435c,
+    #1e3d61,
+    #233565,
+    #312a64
+  );
+}
+
+.materia-ui-table-row:hover {
+  color: red !important;
+  background-color: #0d243c;
+}
