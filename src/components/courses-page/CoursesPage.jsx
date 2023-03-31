@@ -31,7 +31,7 @@ export default function CoursesPage() {
     res = res.filter((course) => course.sem === semVal || semVal === "All");
 
     res = res.filter((course) =>
-      course.courseName.toLowerCase().includes(input)
+      course.courseName.toLowerCase().includes(input.toLowerCase())
     );
 
     setMySelectedCourses(res);

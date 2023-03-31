@@ -14,6 +14,7 @@ export default function App() {
           <Route path="/" element={<CourseRegistrationPage />} />
           <Route path="/myCourses" element={<CoursesPage />} />
           <Route path="/admin" element={<AdminPage />} />
+          <Route path="/Registration" element={<CourseRegistrationPage />} />
         </Routes>
       </Router>
     </div>

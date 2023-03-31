@@ -18,6 +18,7 @@ export default function CourseRegistration() {
   useEffect(() => {
     // fetch the data from localstorage and get the courses then filter by sem then by val
     let res = JSON.parse(localStorage.getItem("allCourses"));
+    console.log(res);
     res = res?.filter(
       (course) =>
         (course.sem === semVal || semVal === "All") &&
@@ -33,21 +34,42 @@ export default function CourseRegistration() {
 
   function handleInputChange(e) {
     setInput(e.target.value);
+
     // also get the courses which are matching this input and set them to the courses
   }
 
   // when ever a courses is selected
   function handleSelectCourses(courseId, response) {
     console.log(courseId, " response is : " + response);
-    let selectedCourses = null;
-    // change selectd courses
+    if (response.toLowerCase().includes("yes")) {
+      // add course id
+
+      let res = JSON.parse(localStorage.getItem("allCourses"));
+      console.log(res);
+      res = res.filter((course) => course.sem === semVal);
+      console.log(res);
+      console.log("Acbd");
+      res = res.filter((course) => course.courseId === courseId);
+      setSelectedCourses({ ...selectedCourses, ...res });
+      console.log("adding");
+      console.log(res);
+    } else {
+      let res = selectedCourses;
+      res = res.filter((course) => course.courseId !== courseId);
+      setSelectedCourses({ ...res });
+    }
   }
 
   function handleCoursesSubmit() {
-    console.log(
-      "submit courses Implementation is pending these are selected courses"
-    );
+    console.log("Selected courses are ");
     console.log(selectedCourses);
+  }
+
+  function fun(e) {
+    console.log("fsadilfsalfslsaildjf")
+    console.dir(e.target);
+    e.preventDefault();
+    handleSelectCourses(e.target.id, e.target.value);
   }
 
   //  styled comp for button
@@ -69,6 +91,7 @@ export default function CourseRegistration() {
       <CustomTable
         handleSelectCourses={handleSelectCourses}
         courses={courses}
+        fun={fun}
       />
 
       <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />

@@ -19,7 +19,7 @@ export default function AdminPage() {
     let res = JSON.parse(localStorage.getItem("allCourses"));
 
     res = res.filter((course) =>
-      course.courseName.toLowerCase().includes(input)
+      course.courseName.toLowerCase().includes(input.toLowerCase())
     );
     setAllcourses(res);
   }, [input]);

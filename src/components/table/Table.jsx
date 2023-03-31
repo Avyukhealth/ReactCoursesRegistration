@@ -12,15 +12,16 @@ import {
 import styled from "styled-components";
 import { Selector } from "../sem-selector/SemSelector";
 
-export default function CustomTable({ courses, handleSelectCourses }) {
-  function fun(e) {
-    console.log("getting here");
-    handleSelectCourses(e.target.id, e.target.value);
-  }
+export default function CustomTable({fun, courses, handleSelectCourses }) {
+  
 
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "50vh" }}>
-      <TableContainer className="temp" component={Paper} sx={{ maxWidth: "90vw" }}>
+      <TableContainer
+        className="temp"
+        component={Paper}
+        sx={{ maxWidth: "90vw" }}
+      >
         <Table className="flex materia-ui-table" aria-label="simple table">
           <TableHead
             className="materia-ui-table-head"
@@ -44,7 +45,13 @@ export default function CustomTable({ courses, handleSelectCourses }) {
                 <TableCell>{row.limit}</TableCell>
                 <TableCell>{row.eligibility}</TableCell>
                 <TableCell>
-                  <Selector onChange={fun} name="course-select" id={ind}>
+                  <Selector
+                    onChange={e=>fun(e.target.id, e.target.value)}
+                    name="course-select"
+                    id={row.courseId}
+                    key={row.courseId}
+                    value="no"
+                  >
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                   </Selector>
