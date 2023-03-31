@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import "./SubmitButton.css";
 
-const ButtonSubmit = styled.button`
+export const ButtonSubmit = styled.button`
   width: 80px;
   background-color: orange;
   color: black;
@@ -10,16 +10,15 @@ const ButtonSubmit = styled.button`
   border: none;
   padding: 4px;
 
-  &:hover{
+  &:hover {
     background-color: #6c71ba;
   }
-  
 `;
 
-export default function SubmitButton() {
+export default function SubmitButton({ handleCoursesSubmit }) {
   return (
     <div className="flex submit-button-div">
-      <ButtonSubmit>Submit</ButtonSubmit>
+      <ButtonSubmit onClick={handleCoursesSubmit}>Submit</ButtonSubmit>
     </div>
   );
 }

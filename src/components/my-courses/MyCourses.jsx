@@ -1,7 +1,13 @@
-import React from 'react'
+import React from "react";
+import Course from "../course/Course";
+import "./MyCourses.css";
 
-export default function MyCourses() {
+export default function MyCourses({ myCourses }) {
   return (
-    <div>MyCourses</div>
-  )
+      <div className="flex my-courses-div">
+        {myCourses?.map((course) => {
+          return <Course  course={course} />;
+        })}
+    </div>
+  );
 }

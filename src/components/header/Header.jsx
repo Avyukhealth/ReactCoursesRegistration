@@ -5,6 +5,7 @@ import logo from "./logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export const Ul = styled.ul`
   li {
@@ -24,7 +25,7 @@ export default function Header({ name, links, userName, userIcon }) {
     <nav className="flex header">
       <div className="header-image">
         {/* <img alt="Logo" src="./logo.png" /> */}
-        Logo
+        <Link to={"/"}>Logo</Link>
       </div>
 
       <div className="flex header-name ">
@@ -36,10 +37,12 @@ export default function Header({ name, links, userName, userIcon }) {
         <Ul className="flex header-links">
           {links?.map((element) => {
             return (
-              <a href="">
-                {" "}
-                <li key={element}>{element}</li>{" "}
-              </a>
+              <div key={element}>
+                <Link to={`/${element}`}>
+                  {" "}
+                  <li>{element}</li>{" "}
+                </Link>
+              </div>
             );
           })}
         </Ul>

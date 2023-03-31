@@ -1,5 +1,5 @@
 import React from "react";
-import "./Table.css";
+import "./AdminCustomTable.css";
 import {
   Table,
   TableBody,
@@ -9,18 +9,16 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import styled from "styled-components";
 import { Selector } from "../sem-selector/SemSelector";
 
-export default function CustomTable({ courses, handleSelectCourses }) {
-  function fun(e) {
-    console.log("getting here");
-    handleSelectCourses(e.target.id, e.target.value);
-  }
-
+export default function AdminCustomTable({ courses }) {
   return (
     <div style={{ display: "flex", justifyContent: "center", height: "50vh" }}>
-      <TableContainer className="temp" component={Paper} sx={{ maxWidth: "90vw" }}>
+      <TableContainer
+        className="temp"
+        component={Paper}
+        sx={{ maxWidth: "90vw" }}
+      >
         <Table className="flex materia-ui-table" aria-label="simple table">
           <TableHead
             className="materia-ui-table-head"
@@ -32,7 +30,7 @@ export default function CustomTable({ courses, handleSelectCourses }) {
               <TableCell>Professor</TableCell>
               <TableCell>Limit</TableCell>
               <TableCell>Eligibility</TableCell>
-              <TableCell>Enroll (Yes/No)</TableCell>
+              <TableCell>Sem</TableCell>
             </TableRow>
           </TableHead>
           <TableBody className="materia-ui-table-body">
@@ -43,12 +41,7 @@ export default function CustomTable({ courses, handleSelectCourses }) {
                 <TableCell>{row.professor}</TableCell>
                 <TableCell>{row.limit}</TableCell>
                 <TableCell>{row.eligibility}</TableCell>
-                <TableCell>
-                  <Selector onChange={fun} name="course-select" id={ind}>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                  </Selector>
-                </TableCell>
+                <TableCell>{row.sem}</TableCell>
               </TableRow>
             ))}
           </TableBody>

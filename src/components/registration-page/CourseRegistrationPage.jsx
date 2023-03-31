@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useLocalStorage } from "../../custom-hooks/useGetDataFromLocalStorage";
 import Footer from "../footer/Footer";
 import Header, { Ul } from "../header/Header";
@@ -12,6 +13,7 @@ export default function CourseRegistration() {
   const [semVal, setSemVal] = useState("None");
   const [input, setInput] = useState("");
   const [courses, setCourses] = useState([]);
+  const [selectedCourses, setSelectedCourses] = useState([]);
 
   useEffect(() => {
     // fetch the data from localstorage and get the courses then filter by sem then by val
@@ -21,25 +23,34 @@ export default function CourseRegistration() {
         (course.sem === semVal || semVal === "All") &&
         course.courseName.toLowerCase().includes(input.toLowerCase())
     );
-
-    console.log("res is ");
-    console.log(res);
-
     setCourses(res);
   }, [semVal, input]);
 
   function handleSemVal(e) {
-    console.log("val is : ", e.target.value);
     setSemVal(e?.target?.value);
     // now we need to change the courses according to the semester
   }
 
   function handleInputChange(e) {
-    console.log(e.target.value);
     setInput(e.target.value);
     // also get the courses which are matching this input and set them to the courses
   }
 
+  // when ever a courses is selected
+  function handleSelectCourses(courseId, response) {
+    console.log(courseId, " response is : " + response);
+    let selectedCourses = null;
+    // change selectd courses
+  }
+
+  function handleCoursesSubmit() {
+    console.log(
+      "submit courses Implementation is pending these are selected courses"
+    );
+    console.log(selectedCourses);
+  }
+
+  //  styled comp for button
   return (
     <div className="flex wrapper">
       <Header
@@ -54,8 +65,13 @@ export default function CourseRegistration() {
       </div>
 
       {/* adding div is causing problems */}
-      <CustomTable courses={courses} />
-      <SubmitButton />
+
+      <CustomTable
+        handleSelectCourses={handleSelectCourses}
+        courses={courses}
+      />
+
+      <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
       <Footer />
     </div>
   );

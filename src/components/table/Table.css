@@ -21,7 +21,6 @@
 }
 
 .materia-ui-table-body {
-  
 }
 
 .materia-ui-table-row:hover {
@@ -29,9 +28,8 @@
   background-color: #0d243c;
 }
 
-.temp{
-    padding: 10px 30px;
-    background-image: linear-gradient(
+.temp {
+  background-image: linear-gradient(
     to right bottom,
     #334855,
     #25435c,

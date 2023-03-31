@@ -1,0 +1,19 @@
+*{
+    color: white;
+}
+
+.course-div {
+  width: 300px;
+  padding: 30px;
+  background-color: #223243;
+  border-radius: 1rem;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 30px;
+}
+
+.course-div:hover {
+  box-shadow: -1px 0px 10px 5px rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  cursor: pointer;
+}
