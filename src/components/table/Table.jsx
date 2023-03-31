@@ -16,7 +16,7 @@ export default function CustomTable({fun, courses, handleSelectCourses }) {
   
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "50vh" }}>
+    <div style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}>
       <TableContainer
         className="temp"
         component={Paper}

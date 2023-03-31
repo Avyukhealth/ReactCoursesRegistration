@@ -10,13 +10,13 @@
 }
 
 .materia-ui-table th {
-  color: white;
+  color: var(--text-color);
   font-size: large;
   font-weight: bolder;
 }
 
 .materia-ui-table td {
-  color: white;
+  color: var(--text-color);
   font-weight: 200;
 }
 

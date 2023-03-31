@@ -1,0 +1,18 @@
+[data-theme="dark"] .wrapper,
+[data-theme="dark"] .wrapper *,
+button {
+  color: #f5a236 ;
+  background-color: black ;
+}
+
+[data-theme="dark"] .wrapper input,
+button,
+[data-theme="dark"] .wrapper .course-div {
+  outline: 0.5px solid #f5a236;
+}
+
+[data-theme="dark"] .wrapper input:hover,
+button:hover,
+[data-theme="dark"] .wrapper .course-div:hover {
+  outline: 2px solid #f5a236;
+}
