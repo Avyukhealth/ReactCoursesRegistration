@@ -23,6 +23,8 @@ export default function CoursesPage() {
     JSON.parse(localStorage.getItem("myCourses"))
   );
 
+
+
   useEffect(() => {
     // Filter course using semVal and input and assign them to mySelectedCourses
 

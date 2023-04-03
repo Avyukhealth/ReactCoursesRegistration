@@ -38,6 +38,7 @@ export default function AddCourse() {
     id = maxId + 1;
     res.push({ ...course, courseId: id });
     localStorage.setItem("allCourses", JSON.stringify(res));
+    console.log("submitted course");
     SetCourse({});
   }
 

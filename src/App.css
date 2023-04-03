@@ -21,6 +21,11 @@ button:hover,
   background-color: black;
 }
 
-.a-links:hover {
+* li:hover {
   color: red !important;
+}
+
+[data-theme="dark"] img {
+  border: 4px solid #f5a236;
+  border-radius: 50%;
 }

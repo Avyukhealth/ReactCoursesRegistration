@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import image from "../../images/logo.png";
 
 export const Ul = styled.ul`
   li {
@@ -19,13 +20,14 @@ export const Ul = styled.ul`
 `;
 
 export default function Header({ name, links, userName, userIcon }) {
-  const logf = logo;
-
   return (
     <nav className="flex header">
       <div className="header-image">
         {/* <img alt="Logo" src="./logo.png" /> */}
-        <Link to={"/"}>Logo</Link>
+        {/* <Link to={"/"}>Logo</Link> */}
+        <Link to={"/"}>
+          <img src={image} style={{ width: "85px", height: "85px" }} />
+        </Link>
       </div>
 
       <div className="flex header-name ">
@@ -38,7 +40,7 @@ export default function Header({ name, links, userName, userIcon }) {
           {links?.map((element) => {
             return (
               <div key={element}>
-                <Link to={`/${element}`}>
+                <Link to={element === "Registration" ? "/" : `/${element}`}>
                   {" "}
                   <li>{element}</li>{" "}
                 </Link>

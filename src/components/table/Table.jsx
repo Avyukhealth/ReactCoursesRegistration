@@ -46,6 +46,7 @@ export default function CustomTable({ courses, handleSelectCourses }) {
                 <TableCell>
                   <Selector
                     onChange={(e) => {
+
                        handleSelectCourses(e.target.id, e.target.value);
                     }}
                     name="course-select"

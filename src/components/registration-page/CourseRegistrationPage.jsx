@@ -14,14 +14,17 @@ export default function CourseRegistration() {
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState(() => []);
 
+
   useEffect(() => {
     // fetch the data from localstorage and get the courses then filter by sem then by val
     let res = JSON.parse(localStorage.getItem("allCourses"));
-    res = res?.filter(
-      (course) =>
+    res = res?.filter((course) => {
+      return (
         (course.sem === semVal || semVal === "All") &&
         course.courseName?.toLowerCase().includes(input?.toLowerCase())
-    );
+      );
+    });
+
     setCourses(res);
   }, [semVal, input]);
 
@@ -67,7 +70,8 @@ export default function CourseRegistration() {
     // update the res with new courses
     res = [...res, ...selectedCourses];
     localStorage.setItem("myCourses", JSON.stringify(res));
-    if (selectedCourses?.length == 0) alert("Please select courses to Register");
+    if (selectedCourses?.length == 0)
+      alert("Please select courses to Register");
     else alert("Registration Successful");
   }
 

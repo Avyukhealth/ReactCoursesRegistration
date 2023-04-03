@@ -16,13 +16,14 @@
 
 .header-links-and-profile {
   justify-content: space-around;
+  align-items: center;
   flex: 1;
 }
 
 .header-links {
-  gap: 10px;
+  gap: 24px;
 }
 
 .user-profile {
-  gap: 10px;
+  gap: 8px;
 }
