@@ -3,15 +3,16 @@ import SubmitButton from "../SubmitButton/SubmitButton";
 import "./AddCourse.css";
 
 export default function AddCourse() {
-  // take all of the input into an object and submit it to localStorage
-  const [course, SetCourse] = useState({
+  const initialObject = {
     courseName: "",
     credits: "",
     professor: "",
     limit: "",
     eligibility: "",
     sem: "",
-  });
+  };
+  // take all of the input into an object and submit it to localStorage
+  const [course, SetCourse] = useState(initialObject);
 
   function handle(e) {
     let obj = {};
@@ -38,45 +39,46 @@ export default function AddCourse() {
     id = maxId + 1;
     res.push({ ...course, courseId: id });
     localStorage.setItem("allCourses", JSON.stringify(res));
-    console.log("submitted course");
-    SetCourse({});
+    SetCourse(initialObject);
   }
 
   return (
     <div className="flex add-course-div">
-      <h3>Add Course</h3>
+      <div className="add-course-div-heading">
+        <h3>Add Course</h3>
+      </div>
       <input
         name="courseName"
         type="text"
         onChange={handle}
-        // value={course.courseName}
+        value={course.courseName}
         placeholder="Enter Course Name"
       />
       <input
         name="credits"
         onChange={handle}
         type="number"
-        // value={course.credits}
+        value={course.credits}
         placeholder="Enter Credits"
       />
       <input
         name="professor"
         onChange={handle}
         type="text"
-        // value={course.professor}
+        value={course.professor}
         placeholder="Enter Professor"
       />
       <input
         name="limit"
         onChange={handle}
         type="text"
-        // value={course.limit}
+        value={course.limit}
         placeholder="Enter Limit"
       />
       <input
         name="eligibility"
         onChange={handle}
-        // value={course.eligibility}
+        value={course.eligibility}
         type="text"
         placeholder="Enter Eligibility"
       />

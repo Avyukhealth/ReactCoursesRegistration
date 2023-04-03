@@ -14,7 +14,6 @@ export default function CourseRegistration() {
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState(() => []);
 
-
   useEffect(() => {
     // fetch the data from localstorage and get the courses then filter by sem then by val
     let res = JSON.parse(localStorage.getItem("allCourses"));
@@ -65,6 +64,12 @@ export default function CourseRegistration() {
 
   function handleCoursesSubmit() {
     // update them to my Course
+
+    if (semVal === "All") {
+      alert("Cannot submit All Courses");
+      return;
+    }
+
     let res = JSON.parse(localStorage.getItem("myCourses"));
 
     // update the res with new courses

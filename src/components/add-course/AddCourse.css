@@ -1,6 +1,10 @@
 .add-course-div{
     flex-direction:  column;
     gap: 20px;
-    align-items: center
-;
+    align-items: center;
+}
+
+
+.add-course-div-heading{
+    margin-bottom: 20px;
 }
