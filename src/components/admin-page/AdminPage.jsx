@@ -4,8 +4,6 @@ import AdminCustomTable from "../adminCustomTable/AdminCustomTable";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import SearchBar from "../search-bar/SearchBar";
-import CustomTable from "../table/Table";
-import Table from "../table/Table";
 import "./AdminPage.css";
 
 export default function AdminPage() {
@@ -19,7 +17,7 @@ export default function AdminPage() {
     let res = JSON.parse(localStorage.getItem("allCourses"));
 
     res = res.filter((course) =>
-      course.courseName.toLowerCase().includes(input.toLowerCase())
+      course.courseName?.toLowerCase().includes(input?.toLowerCase())
     );
     setAllcourses(res);
   }, [input]);

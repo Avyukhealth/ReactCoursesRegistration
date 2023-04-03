@@ -1,8 +1,7 @@
 [data-theme="dark"] .wrapper,
-[data-theme="dark"] .wrapper *,
-button {
-  color: #f5a236 ;
-  background-color: black ;
+[data-theme="dark"] .wrapper * {
+  color: #f5a236;
+  background-color: black !important;
 }
 
 [data-theme="dark"] .wrapper input,
@@ -15,4 +14,13 @@ button,
 button:hover,
 [data-theme="dark"] .wrapper .course-div:hover {
   outline: 2px solid #f5a236;
+}
+
+[data-theme="dark"] input::placeholder {
+  color: #715734;
+  background-color: black;
+}
+
+.a-links:hover {
+  color: red !important;
 }

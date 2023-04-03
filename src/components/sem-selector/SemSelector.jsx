@@ -14,12 +14,16 @@ export const Selector = styled.select`
 `;
 //
 export default function SemSelector({ semVal, handleSemVal }) {
-  // let [allCourses, setAllCourses] = useLocalStorage("allCourses");
   return (
     <div className="sem-selector">
       <span>
         Please select the semester to select the courses{" "}
-        <Selector value={semVal} name="semVal" id="semVal" onChange={(e) => handleSemVal(e)}>
+        <Selector
+          value={semVal}
+          name="semVal"
+          id="semVal"
+          onChange={(e) => handleSemVal(e)}
+        >
           <option value="none">None</option>
           <option value="All">All</option>
           <option value="1">1</option>

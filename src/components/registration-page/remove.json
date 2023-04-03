@@ -1,0 +1,146 @@
+[
+    {
+        "courseName": "Image Processing",
+        "credits": "4",
+        "professor": "Trilok Panth",
+        "sem": "1",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "1"
+    },
+    {
+        "courseName": "Image Processing",
+        "credits": "4",
+        "professor": "Trilok Panth",
+        "sem": "1",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "2"
+    },
+    {
+        "courseName": "Image Processing",
+        "credits": "4",
+        "professor": "Trilok Panth",
+        "sem": "1",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "3"
+    },
+    {
+        "courseName": "Image Processing",
+        "credits": "4",
+        "professor": "Trilok Panth",
+        "sem": "1",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "4"
+    },
+    {
+        "courseName": "Computer Networking",
+        "credits": "4",
+        "professor": "Anand Gupta",
+        "sem": "2",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "5"
+    },
+    {
+        "courseName": "Computer Networking",
+        "credits": "4",
+        "professor": "Anand Gupta",
+        "sem": "2",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "6"
+    },
+    {
+        "courseName": "Computer Networking",
+        "credits": "4",
+        "professor": "Anand Gupta",
+        "sem": "2",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "7"
+    },
+    {
+        "courseName": "Computer Networking",
+        "credits": "4",
+        "professor": "Anand Gupta",
+        "sem": "2",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "8"
+    },
+    {
+        "courseName": "System Design",
+        "credits": "4",
+        "professor": "Rahul Kala",
+        "sem": "3",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "9"
+    },
+    {
+        "courseName": "System Design",
+        "credits": "4",
+        "professor": "Rahul Kala",
+        "sem": "3",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "10"
+    },
+    {
+        "courseName": "System Design",
+        "credits": "4",
+        "professor": "Rahul Kala",
+        "sem": "3",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "11"
+    },
+    {
+        "courseName": "System Design",
+        "credits": "4",
+        "professor": "Rahul Kala",
+        "sem": "3",
+        "eligibility": "CSE",
+        "limit": "50",
+        "courseId": "12"
+    },
+    {
+        "courseName": "dummy",
+        "credits": "4",
+        "professor": "dummuyProff",
+        "limit": "40",
+        "eligibility": "IT",
+        "sem": "9",
+        "courseId": "13"
+    },
+    {
+        "courseName": "Course Name",
+        "credits": "4",
+        "professor": "prof",
+        "limit": "3",
+        "eligibility": "IT",
+        "sem": "7",
+        "courseId": "14"
+    },
+    {
+        "courseName": "cn",
+        "credits": "4",
+        "professor": "pr",
+        "limit": "50",
+        "eligibility": "IT",
+        "sem": "8",
+        "courseId": "15"
+    },
+    {
+        "courseName": "fdsfd",
+        "credits": "3421",
+        "professor": "sfadf",
+        "limit": "24512",
+        "eligibility": "fdsaf",
+        "sem": "4",
+        "courseId": "16"
+    }
+]

@@ -1,13 +1,7 @@
-import React, { useContext } from "react";
-import { UserContext } from "./App";
+import React from 'react'
 
 export default function Test() {
-  let val = useContext(UserContext);
-
   return (
-    <div>
-      <p>hu</p>
-      {val}
-    </div>
-  );
+    <div>Test</div>
+  )
 }

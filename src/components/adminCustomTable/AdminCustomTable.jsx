@@ -13,7 +13,7 @@ import { Selector } from "../sem-selector/SemSelector";
 
 export default function AdminCustomTable({ courses }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center", height: "50vh" }}>
+    <div style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}>
       <TableContainer
         className="temp"
         component={Paper}
@@ -34,7 +34,7 @@ export default function AdminCustomTable({ courses }) {
             </TableRow>
           </TableHead>
           <TableBody className="materia-ui-table-body">
-            {courses?.map((row, ind) => (
+            {courses?.map((row) => (
               <TableRow key={row.courseId} className="materia-ui-table-row">
                 <TableCell>{row.courseName}</TableCell>
                 <TableCell>{row.credits}</TableCell>

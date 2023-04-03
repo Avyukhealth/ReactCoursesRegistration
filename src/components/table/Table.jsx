@@ -9,14 +9,13 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import styled from "styled-components";
 import { Selector } from "../sem-selector/SemSelector";
 
-export default function CustomTable({fun, courses, handleSelectCourses }) {
-  
-
+export default function CustomTable({ courses, handleSelectCourses }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}>
+    <div
+      style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}
+    >
       <TableContainer
         className="temp"
         component={Paper}
@@ -46,14 +45,15 @@ export default function CustomTable({fun, courses, handleSelectCourses }) {
                 <TableCell>{row.eligibility}</TableCell>
                 <TableCell>
                   <Selector
-                    onChange={e=>fun(e.target.id, e.target.value)}
+                    onChange={(e) => {
+                       handleSelectCourses(e.target.id, e.target.value);
+                    }}
                     name="course-select"
                     id={row.courseId}
                     key={row.courseId}
-                    value="no"
                   >
-                    <option value="yes">Yes</option>
                     <option value="no">No</option>
+                    <option value="yes">Yes</option>
                   </Selector>
                 </TableCell>
               </TableRow>

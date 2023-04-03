@@ -11,7 +11,6 @@ export default function AddCourse() {
     limit: "",
     eligibility: "",
     sem: "",
-    courseId: "",
   });
 
   function handle(e) {
@@ -29,9 +28,15 @@ export default function AddCourse() {
   function handleCoursesSubmit() {
     // update the course in localStorage and setCourse to empty
     let res = JSON.parse(localStorage.getItem("allCourses"));
-    res.push(course);
-    console.log("added");
-    console.log(res);
+
+    // id is max id + 1
+    let id = 3424;
+    let maxId = 1;
+    JSON.parse(localStorage.getItem("allCourses"))?.map((course) => {
+      maxId = Math.max(maxId, course?.courseId);
+    });
+    id = maxId + 1;
+    res.push({ ...course, courseId: id });
     localStorage.setItem("allCourses", JSON.stringify(res));
     SetCourse({});
   }
@@ -43,44 +48,38 @@ export default function AddCourse() {
         name="courseName"
         type="text"
         onChange={handle}
-        value={course.courseName}
+        // value={course.courseName}
         placeholder="Enter Course Name"
       />
       <input
         name="credits"
         onChange={handle}
         type="number"
-        value={course.credits}
+        // value={course.credits}
         placeholder="Enter Credits"
       />
       <input
         name="professor"
         onChange={handle}
         type="text"
-        value={course.professor}
+        // value={course.professor}
         placeholder="Enter Professor"
       />
       <input
         name="limit"
         onChange={handle}
         type="text"
-        value={course.limit}
+        // value={course.limit}
         placeholder="Enter Limit"
       />
       <input
         name="eligibility"
         onChange={handle}
-        value={course.eligibility}
+        // value={course.eligibility}
         type="text"
         placeholder="Enter Eligibility"
       />
       <input name="sem" onChange={handle} type="text" placeholder="Enter Sem" />
-      <input
-        name="courseId"
-        onChange={handle}
-        type="text"
-        placeholder="Enter CourseId"
-      />
       <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
     </div>
   );

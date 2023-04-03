@@ -39,6 +39,14 @@ export default function CoursesPage() {
 
   function handleSemVal(e) {
     setSemVal(e.target.value);
+    // set selected courses acc to them
+    let myCourses = JSON.parse(localStorage.getItem("myCourses"));
+
+    if (e.target.value == "All") setMySelectedCourses(myCourses);
+    else {
+      myCourses = myCourses.filter((course) => course.sem == e.target.value);
+      setMySelectedCourses(myCourses);
+    }
   }
 
   function handleInputChange(e) {

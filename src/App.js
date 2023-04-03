@@ -3,11 +3,11 @@ import AdminPage from "./components/admin-page/AdminPage";
 import CourseRegistrationPage from "./components/registration-page/CourseRegistrationPage";
 import CoursesPage from "./components/courses-page/CoursesPage";
 import "./App.css";
-import { Link, Routes } from "react-router-dom";
-import { BrowserRouter as Router, Route, Routs } from "react-router-dom";
+import { Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 export default function App() {
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useState("light");
 
   return (
     <div data-theme={theme}>
@@ -26,8 +26,9 @@ export default function App() {
         }}
         style={{
           width: "min-content",
-          backgroundColor: "black",
+          backgroundColor: theme === "dark" ? "black" : "#425e99",
           borderRadius: "10%",
+          color: theme === "dark" ? "#f5a236" : "white",
           padding: "12px",
           position: "fixed",
           bottom: 10,
