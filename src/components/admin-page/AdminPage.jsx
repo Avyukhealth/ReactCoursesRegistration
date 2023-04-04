@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import AddCourse from "../add-course/AddCourse";
 import AdminCustomTable from "../adminCustomTable/AdminCustomTable";
 import Footer from "../footer/Footer";
@@ -8,19 +8,26 @@ import "./AdminPage.css";
 
 export default function AdminPage() {
   const [allCourses, setAllcourses] = useState(
-    JSON.parse(localStorage.getItem("allCourses")) || {}
+    () => JSON.parse(localStorage.getItem("allCourses")) || {}
   );
 
   const [input, setInput] = useState("");
-
+  const totalCoursesFromLocalStorage = useMemo(
+    () => JSON.parse(localStorage.getItem("allCourses")),
+    []
+  );
   useEffect(() => {
-    let res = JSON.parse(localStorage.getItem("allCourses"));
+    let res = totalCoursesFromLocalStorage;
 
-    res = res.filter((course) =>
-      course.courseName?.toLowerCase().includes(input?.toLowerCase())
-    );
+    res = res.filter((course) => {
+      return (
+        course?.courseName?.toLowerCase().includes(input.toLowerCase()) ||
+        course?.professor?.toLowerCase().includes(input.toLowerCase()) ||
+        course?.eligibility?.toLowerCase().includes(input.toLowerCase())
+      );
+    });
     setAllcourses(res);
-  }, [input]);
+  }, [input, totalCoursesFromLocalStorage]);
 
   function handleInputChange(e) {
     setInput(e.target.value);

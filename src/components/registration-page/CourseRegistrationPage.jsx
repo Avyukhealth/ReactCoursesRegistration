@@ -1,5 +1,4 @@
-import { CssOutlined } from "@mui/icons-material";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import SearchBar from "../search-bar/SearchBar";
@@ -13,36 +12,42 @@ export default function CourseRegistration() {
   const [input, setInput] = useState("");
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState(() => []);
-
+  
+  const totalCourses = useMemo(
+    () => JSON.parse(localStorage.getItem("allCourses")),
+    []
+  );
+  
   useEffect(() => {
-    // fetch the data from localstorage and get the courses then filter by sem then by val
-    let res = JSON.parse(localStorage.getItem("allCourses"));
+    let res = totalCourses;
+
     res = res?.filter((course) => {
       return (
-        (course.sem === semVal || semVal === "All") &&
-        course.courseName?.toLowerCase().includes(input?.toLowerCase())
+        ((course.sem === semVal || semVal === "All") &&
+          course?.courseName?.toLowerCase().includes(input.toLowerCase())) ||
+        course?.professor?.toLowerCase().includes(input.toLowerCase()) ||
+        course?.eligibility?.toLowerCase().includes(input.toLowerCase())
       );
     });
 
     setCourses(res);
-  }, [semVal, input]);
+  }, [semVal, input, totalCourses]);
 
+  const myCoursesFromStorage = JSON.parse(localStorage.getItem("myCourses"));
   function handleSemVal(e) {
     //  if myCourses aleary have that sem then show alert
-    let allCourses = JSON.parse(localStorage.getItem("myCourses"));
+    let allCourses = myCoursesFromStorage;
     let enrolled = false;
     let selectedSem = e?.target?.value;
-    allCourses.map((course) => {
-      if (course.sem == selectedSem) enrolled = true;
+    allCourses.forEach((course) => {
+      if (course.sem === selectedSem) enrolled = true;
     });
     if (enrolled) alert("Sem is already Enrolled");
     else setSemVal(e?.target?.value);
-    // now we need to change the courses according to the semester
   }
 
   function handleInputChange(e) {
     setInput(e.target.value);
-    // also get the courses which are matching this input and set them to the courses
   }
 
   // when ever a courses is selected
@@ -64,7 +69,6 @@ export default function CourseRegistration() {
 
   function handleCoursesSubmit() {
     // update them to my Course
-
     if (semVal === "All") {
       alert("Cannot submit All Courses");
       return;
@@ -94,13 +98,10 @@ export default function CourseRegistration() {
         <SearchBar input={input} handleInputChange={handleInputChange} />
       </div>
 
-      {/* adding div is causing problems */}
-
       <CustomTable
         handleSelectCourses={handleSelectCourses}
         courses={courses}
       />
-
       <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
       <Footer />
     </div>

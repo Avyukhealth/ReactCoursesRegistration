@@ -9,7 +9,6 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { Selector } from "../sem-selector/SemSelector";
 
 export default function AdminCustomTable({ courses }) {
   return (

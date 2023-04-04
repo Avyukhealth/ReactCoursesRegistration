@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import "./AddCourse.css";
 
@@ -14,7 +14,7 @@ export default function AddCourse() {
   // take all of the input into an object and submit it to localStorage
   const [course, SetCourse] = useState(initialObject);
 
-  function handle(e) {
+  function handleChange(e) {
     let obj = {};
     let a = e.target.name,
       b = e.target.value;
@@ -50,39 +50,45 @@ export default function AddCourse() {
       <input
         name="courseName"
         type="text"
-        onChange={handle}
+        onChange={handleChange}
         value={course.courseName}
         placeholder="Enter Course Name"
       />
       <input
         name="credits"
-        onChange={handle}
+        onChange={handleChange}
         type="number"
         value={course.credits}
         placeholder="Enter Credits"
       />
       <input
         name="professor"
-        onChange={handle}
+        onChange={handleChange}
         type="text"
         value={course.professor}
         placeholder="Enter Professor"
       />
       <input
         name="limit"
-        onChange={handle}
+        onChange={handleChange}
         type="text"
         value={course.limit}
         placeholder="Enter Limit"
       />
       <input
         name="eligibility"
-        onChange={handle}
+        onChange={handleChange}
         value={course.eligibility}
         type="text"
         placeholder="Enter Eligibility"
       />
-      <input name="sem" onChange={handle} type="text" placeholder="Enter Sem" />
+      <input
+        name="sem"
+        onChange={handleChange}
+        value={course.eligibility}
+        type="text"
+        placeholder="Enter Sem"
+      />
       <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
     </div>
   );

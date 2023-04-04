@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useLocalStorage } from "../../custom-hooks/useGetDataFromLocalStorage";
+import React, { useEffect, useMemo, useState } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import MyCourses from "../my-courses/MyCourses";
 import SearchBar from "../search-bar/SearchBar";
 import SemSelector from "../sem-selector/SemSelector";
 import "./CoursesPage.css";
-
-import Test from "../Test";
-/*
-<Header {headerName} {links}/>
-<SemSelector {semVal}/>
-<SearchBar {input}/>
-<Courses {inputcoursesdetails} />    -> <CourseDetails {courseDetails} />
-<Footer/>
-*/
 
 export default function CoursesPage() {
   const [semVal, setSemVal] = useState("All");
@@ -23,30 +13,31 @@ export default function CoursesPage() {
     JSON.parse(localStorage.getItem("myCourses"))
   );
 
-
+  const myTotalCourses = useMemo(
+    () => JSON.parse(localStorage.getItem("myCourses")),
+    []
+  );
 
   useEffect(() => {
-    // Filter course using semVal and input and assign them to mySelectedCourses
-
-    let res = JSON.parse(localStorage.getItem("myCourses"));
+    let res = myTotalCourses;
 
     res = res.filter((course) => course.sem === semVal || semVal === "All");
 
     res = res.filter((course) =>
-      course.courseName.toLowerCase().includes(input.toLowerCase())
+      course.courseName.toLowerCase().includes(input.toLowerCase()) || course.professor.toLowerCase().includes(input.toLowerCase())
     );
 
     setMySelectedCourses(res);
-  }, [semVal, input]);
+  }, [semVal, input,myTotalCourses]);
 
   function handleSemVal(e) {
     setSemVal(e.target.value);
     // set selected courses acc to them
-    let myCourses = JSON.parse(localStorage.getItem("myCourses"));
+    let myCourses = myTotalCourses;
 
-    if (e.target.value == "All") setMySelectedCourses(myCourses);
+    if (e.target.value === "All") setMySelectedCourses(myCourses);
     else {
-      myCourses = myCourses.filter((course) => course.sem == e.target.value);
+      myCourses = myCourses.filter((course) => course.sem === e.target.value);
       setMySelectedCourses(myCourses);
     }
   }

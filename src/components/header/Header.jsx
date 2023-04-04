@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import "./Header.css";
-import logo from "./logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
@@ -19,12 +18,10 @@ export const Ul = styled.ul`
   list-style: none;
 `;
 
-export default function Header({ name, links, userName, userIcon }) {
+export default function Header({ name, links, userName }) {
   return (
     <nav className="flex header">
       <div className="header-image">
-        {/* <img alt="Logo" src="./logo.png" /> */}
-        {/* <Link to={"/"}>Logo</Link> */}
         <Link to={"/"}>
           <img src={image} style={{ width: "85px", height: "85px" }} />
         </Link>

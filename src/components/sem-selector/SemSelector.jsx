@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { useLocalStorage } from "../../custom-hooks/useGetDataFromLocalStorage";
 import "./SemSelector.css";
 
 export const Selector = styled.select`

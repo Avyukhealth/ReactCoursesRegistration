@@ -6,7 +6,7 @@ export default function MyCourses({ myCourses }) {
   return (
     <div className="flex my-courses-div">
       {myCourses?.map((course) => {
-        return <Course course={course} />;
+        return <Course key={course.courseId} course={course} />;
       })}
     </div>
   );
