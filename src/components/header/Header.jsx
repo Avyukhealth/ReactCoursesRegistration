@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import styled from "styled-components";
 import "./Header.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,9 @@ export const Ul = styled.ul`
   list-style: none;
 `;
 
-export default function Header({ name, links, userName }) {
+
+let Header = ({headerProps}) => {
+ const { name, links, userName } =  headerProps;
   return (
     <nav className="flex header">
       <div className="header-image">
@@ -54,4 +56,8 @@ export default function Header({ name, links, userName }) {
       </div>
     </nav>
   );
-}
+};
+
+Header = memo(Header);
+
+export default Header;

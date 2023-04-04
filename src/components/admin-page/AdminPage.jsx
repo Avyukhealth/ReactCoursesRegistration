@@ -33,14 +33,19 @@ export default function AdminPage() {
     setInput(e.target.value);
   }
 
+  const headerProps = useMemo(
+    () => ({
+      name: "Course Registration",
+      links: ["MyCourses", "Admin"],
+      userName: "Sainath",
+      userIcon: "userIcon",
+    }),
+    []
+  );
+
   return (
     <div className="flex wrapper">
-      <Header
-        name="Admin"
-        links={["Registration", "MyCourses"]}
-        userName="Sainath"
-        userIcon="userIcon"
-      />
+      <Header headerProps={headerProps} />
       <div className="flex add-course-and-courses-table-div">
         <div className="add-courses-component-div">
           <AddCourse />

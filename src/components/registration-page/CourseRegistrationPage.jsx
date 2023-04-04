@@ -32,13 +32,13 @@ export default function CourseRegistration() {
   }, [semVal, input, totalCourses]);
 
   const myCoursesFromStorage = JSON.parse(localStorage.getItem("myCourses"));
+
   function handleSemVal(e) {
     //  if myCourses aleary have that sem then show alert
     let allCourses = myCoursesFromStorage;
     let enrolled = false;
-    let selectedSem = e?.target?.value;
-    allCourses.forEach((course) => {
-      if (course.sem === selectedSem) enrolled = true;
+    allCourses?.forEach((course) => {
+      if (course.sem === e?.target?.value) enrolled = true;
     });
 
     if (semVal !== "All")
@@ -47,7 +47,7 @@ export default function CourseRegistration() {
     if (enrolled) {
       alert("sem is already enrolled");
     } else {
-      setSemVal(e.target.value);
+      setSemVal(e?.target.value);
       setCourses(allCourses);
     }
   }
@@ -60,15 +60,15 @@ export default function CourseRegistration() {
   function handleSelectCourses(courseId, response) {
     if (response?.toLowerCase().includes("yes")) {
       let res = JSON.parse(localStorage.getItem("allCourses"));
-      res = res.filter((course) => course.sem == semVal || semVal == "All");
-      res = res.filter((course) => course.courseId == courseId);
+      res = res?.filter((course) => course.sem === semVal || semVal === "All");
+      res = res?.filter((course) => course.courseId === courseId);
 
       setSelectedCourses((selectedCourses) => {
         return [...selectedCourses, ...res];
       });
     } else {
       let res = selectedCourses;
-      res = res.filter((course) => course.courseId !== courseId);
+      res = res?.filter((course) => course.courseId !== courseId);
       setSelectedCourses({ ...res });
     }
   }
@@ -85,21 +85,23 @@ export default function CourseRegistration() {
     // update the res with new courses
     res = [...res, ...selectedCourses];
     localStorage.setItem("myCourses", JSON.stringify(res));
-    if (selectedCourses?.length == 0)
+    if (selectedCourses?.length === 0)
       alert("Please select courses to Register");
     else alert("Registration Successful");
     setSemVal("All");
   }
 
+  const headerProps = useMemo(() => ({
+    name: "Course Registration",
+    links: ["MyCourses", "Admin"],
+    userName: "Sainath",
+    userIcon: "userIcon",
+  }), []);
+
   //  styled comp for button
   return (
     <div className="flex wrapper">
-      <Header
-        name="Course Registration"
-        links={["MyCourses", "Admin"]}
-        userName="Sainath"
-        userIcon="userIcon"
-      />
+      <Header headerProps={headerProps} />
       <div className="flex sem-selector-and-search-bar">
         <SemSelector semVal={semVal} handleSemVal={handleSemVal} />
         <SearchBar input={input} handleInputChange={handleInputChange} />

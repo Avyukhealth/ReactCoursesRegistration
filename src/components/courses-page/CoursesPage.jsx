@@ -21,14 +21,16 @@ export default function CoursesPage() {
   useEffect(() => {
     let res = myTotalCourses;
 
-    res = res.filter((course) => course.sem === semVal || semVal === "All");
+    res = res?.filter((course) => course.sem === semVal || semVal === "All");
 
-    res = res.filter((course) =>
-      course.courseName.toLowerCase().includes(input.toLowerCase()) || course.professor.toLowerCase().includes(input.toLowerCase())
+    res = res?.filter(
+      (course) =>
+        course.courseName.toLowerCase().includes(input.toLowerCase()) ||
+        course.professor.toLowerCase().includes(input.toLowerCase())
     );
 
     setMySelectedCourses(res);
-  }, [semVal, input,myTotalCourses]);
+  }, [semVal, input, myTotalCourses]);
 
   function handleSemVal(e) {
     setSemVal(e.target.value);
@@ -46,14 +48,16 @@ export default function CoursesPage() {
     setInput(e.target.value);
   }
 
+  const headerProps = useMemo(() => ({
+    name: "Course Registration",
+    links: ["MyCourses", "Admin"],
+    userName: "Sainath",
+    userIcon: "userIcon",
+  }), []);
+
   return (
     <div className="flex wrapper">
-      <Header
-        name="My Courses"
-        links={["Registration", "Admin"]}
-        userName="Sainath"
-        userIcon="userIcon"
-      />
+      <Header headerProps={headerProps} />
 
       <div className="flex sem-selector-and-search-bar">
         <SemSelector semVal={semVal} handleSemVal={handleSemVal} />
