@@ -12,21 +12,19 @@ export default function CourseRegistration() {
   const [input, setInput] = useState("");
   const [courses, setCourses] = useState([]);
   const [selectedCourses, setSelectedCourses] = useState(() => []);
-  
+
   const totalCourses = useMemo(
     () => JSON.parse(localStorage.getItem("allCourses")),
     []
   );
-  
+
   useEffect(() => {
     let res = totalCourses;
 
     res = res?.filter((course) => {
       return (
-        ((course.sem === semVal || semVal === "All") &&
-          course?.courseName?.toLowerCase().includes(input.toLowerCase())) ||
-        course?.professor?.toLowerCase().includes(input.toLowerCase()) ||
-        course?.eligibility?.toLowerCase().includes(input.toLowerCase())
+        (course.sem === semVal || semVal === "All") &&
+        course?.courseName?.toLowerCase().includes(input.toLowerCase())
       );
     });
 
@@ -42,8 +40,16 @@ export default function CourseRegistration() {
     allCourses.forEach((course) => {
       if (course.sem === selectedSem) enrolled = true;
     });
-    if (enrolled) alert("Sem is already Enrolled");
-    else setSemVal(e?.target?.value);
+
+    if (semVal !== "All")
+      allCourses = allCourses.filter((course) => course.sem === semVal);
+
+    if (enrolled) {
+      alert("sem is already enrolled");
+    } else {
+      setSemVal(e.target.value);
+      setCourses(allCourses);
+    }
   }
 
   function handleInputChange(e) {
@@ -58,7 +64,7 @@ export default function CourseRegistration() {
       res = res.filter((course) => course.courseId == courseId);
 
       setSelectedCourses((selectedCourses) => {
-        return [...res, ...selectedCourses];
+        return [...selectedCourses, ...res];
       });
     } else {
       let res = selectedCourses;
@@ -82,6 +88,7 @@ export default function CourseRegistration() {
     if (selectedCourses?.length == 0)
       alert("Please select courses to Register");
     else alert("Registration Successful");
+    setSemVal("All");
   }
 
   //  styled comp for button
