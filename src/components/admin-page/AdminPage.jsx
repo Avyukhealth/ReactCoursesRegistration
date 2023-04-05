@@ -8,7 +8,7 @@ import "./AdminPage.css";
 
 export default function AdminPage() {
   const [allCourses, setAllcourses] = useState(
-    () => JSON.parse(localStorage.getItem("allCourses")) || {}
+    () => JSON.parse(localStorage.getItem("allCourses")) || []
   );
 
   const [input, setInput] = useState("");
@@ -19,7 +19,7 @@ export default function AdminPage() {
   useEffect(() => {
     let res = totalCoursesFromLocalStorage;
 
-    res = res.filter((course) => {
+    res = res?.filter((course) => {
       return (
         course?.courseName?.toLowerCase().includes(input.toLowerCase()) ||
         course?.professor?.toLowerCase().includes(input.toLowerCase()) ||

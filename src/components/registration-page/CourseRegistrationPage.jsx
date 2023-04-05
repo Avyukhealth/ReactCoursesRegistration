@@ -42,7 +42,7 @@ export default function CourseRegistration() {
     });
 
     if (semVal !== "All")
-      allCourses = allCourses.filter((course) => course.sem === semVal);
+      allCourses = allCourses?.filter((course) => course.sem === semVal);
 
     if (enrolled) {
       alert("sem is already enrolled");

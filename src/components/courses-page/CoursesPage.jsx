@@ -39,7 +39,7 @@ export default function CoursesPage() {
 
     if (e.target.value === "All") setMySelectedCourses(myCourses);
     else {
-      myCourses = myCourses.filter((course) => course.sem === e.target.value);
+      myCourses = myCourses?.filter((course) => course.sem === e.target.value);
       setMySelectedCourses(myCourses);
     }
   }
@@ -49,8 +49,8 @@ export default function CoursesPage() {
   }
 
   const headerProps = useMemo(() => ({
-    name: "Course Registration",
-    links: ["MyCourses", "Admin"],
+    name: "My Courses",
+    links: ["Registration", "Admin"],
     userName: "Sainath",
     userIcon: "userIcon",
   }), []);

@@ -10,9 +10,12 @@ import {
   Paper,
 } from "@mui/material";
 
-export default function AdminCustomTable({ courses }) {
+export default function AdminCustomTable({ courses  }) {
+  console.log(courses);
   return (
-    <div style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}>
+    <div
+      style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}
+    >
       <TableContainer
         className="temp"
         component={Paper}
