@@ -1,4 +1,3 @@
-import React from "react";
 import "./Table.css";
 import {
   Table,
@@ -10,8 +9,15 @@ import {
   Paper,
 } from "@mui/material";
 import { Selector } from "../sem-selector/SemSelector";
+import { createStore } from "redux";
+import { useCallback, useMemo } from "react";
 
 export default function CustomTable({ courses, handleSelectCourses }) {
+  const slow = useCallback(function () {
+    for (let i = 0; i < 10000000000; i++) {}
+  }, []);
+  
+
   return (
     <div
       style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}
@@ -36,7 +42,7 @@ export default function CustomTable({ courses, handleSelectCourses }) {
             </TableRow>
           </TableHead>
           <TableBody className="materia-ui-table-body">
-            {courses?.map((row, ind) => (
+            {courses?.map((row) => (
               <TableRow key={row.courseId} className="materia-ui-table-row">
                 <TableCell>{row.courseName}</TableCell>
                 <TableCell>{row.credits}</TableCell>
@@ -46,8 +52,7 @@ export default function CustomTable({ courses, handleSelectCourses }) {
                 <TableCell>
                   <Selector
                     onChange={(e) => {
-
-                       handleSelectCourses(e.target.id, e.target.value);
+                      handleSelectCourses(e.target.id, e.target.value);
                     }}
                     name="course-select"
                     id={row.courseId}

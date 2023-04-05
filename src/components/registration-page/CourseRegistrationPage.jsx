@@ -1,11 +1,12 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import SearchBar from "../search-bar/SearchBar";
 import SemSelector from "../sem-selector/SemSelector";
 import SubmitButton from "../SubmitButton/SubmitButton";
-import CustomTable from "../table/Table";
 import "./CourseRegistrationPage.css";
+
+const CustomTable = lazy(() => import("../table/Table"));
 
 export default function CourseRegistration() {
   const [semVal, setSemVal] = useState("None");
@@ -91,12 +92,15 @@ export default function CourseRegistration() {
     setSemVal("All");
   }
 
-  const headerProps = useMemo(() => ({
-    name: "Course Registration",
-    links: ["MyCourses", "Admin"],
-    userName: "Sainath",
-    userIcon: "userIcon",
-  }), []);
+  const headerProps = useMemo(
+    () => ({
+      name: "Course Registration",
+      links: ["MyCourses", "Admin"],
+      userName: "Sainath",
+      userIcon: "userIcon",
+    }),
+    []
+  );
 
   //  styled comp for button
   return (
@@ -107,10 +111,12 @@ export default function CourseRegistration() {
         <SearchBar input={input} handleInputChange={handleInputChange} />
       </div>
 
-      <CustomTable
-        handleSelectCourses={handleSelectCourses}
-        courses={courses}
-      />
+      <Suspense fallback={<div>Loading</div>}>
+        <CustomTable
+          handleSelectCourses={handleSelectCourses}
+          courses={courses}
+        />
+      </Suspense>
       <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
       <Footer />
     </div>

@@ -40,6 +40,7 @@ export default function AddCourse() {
     res.push({ ...course, courseId: id });
     localStorage.setItem("allCourses", JSON.stringify(res));
     SetCourse(initialObject);
+    alert("Course Submitted Successfully!")
   }
 
   return (
@@ -85,7 +86,7 @@ export default function AddCourse() {
       <input
         name="sem"
         onChange={handleChange}
-        value={course.eligibility}
+        value={course.sem}
         type="text"
         placeholder="Enter Sem"
       />

@@ -35,7 +35,7 @@ export default function AdminPage() {
 
   const headerProps = useMemo(
     () => ({
-      name: "Course Registration",
+      name: "Admin Panel",
       links: ["MyCourses", "Admin"],
       userName: "Sainath",
       userIcon: "userIcon",

@@ -1,11 +1,49 @@
-function isValExistInObject(obj, val) {
-  let a = false;
-  Array.from(Object.values(obj)).map((value) => {
-    if (String(value).includes(val.toLowerCase())) a = true;
-  });
-  return a;
+function Button(props) {
+  return <button onClick={props.onClick}>{props.children}</button>;
 }
 
-let obj = { a: "first value", b: 2 };
+function ButtonWrapper(props) {
+  return (
+    <div>
+      {props.renderButton({
+        onClick: () => console.log("Button clicked")
+      })}
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ButtonWrapper
+      renderButton={(arg) => (
+        <Button onClick={arg.onClick}>Click me</Button>
+      )}
+    />
+  );
+}
 
 
+function Button(props) {
+  return <button onClick={props.onClick}> {props.children} </button>;
+}
+
+function ButtonWrapper(props) {
+  return (
+    <div>
+      {" "}
+      {props.renderButton({ onClick: () => console.log("clicked me") })}
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <div>
+      <ButtonWrapper
+        renderButton={({ onClick }) => {
+          <Button onClick={onClick}>Click Me</Button>;
+        }}
+      />
+    </div>
+  );
+}
