@@ -52,9 +52,9 @@ export default function CourseRegistration() {
 
   useEffect(() => {
     dispatch({
-      type: actionTypes.CHANGE_COURSES,
-      value: JSON.parse(localStorage.getItem("allCourses")),
-    });
+      type: actionTypes.CHANGE_SELECTED_COURSES,
+      value: totalCourses
+    })
   }, []);
 
   function handleSemVal(e) {

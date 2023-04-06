@@ -35,13 +35,22 @@ export default function CoursesPage() {
 
   function handleInputChange(e) {
     setInput(e.target.value);
+    let res = myTotalCourses?.filter((course) => {
+      return (
+        (course.sem === semVal || semVal === "All") &&
+        course?.courseName
+          ?.toLowerCase()
+          .includes(e?.target.value?.toLowerCase())
+      );
+    });
+    setMySelectedCourses(res);
   }
 
   const links = useMemo(() => ["Registration", "Admin"], []);
 
   return (
     <div className="flex wrapper">
-      <Header name="Course Registration" userName="Sainath" links={links} />
+      <Header name="My Courses" userName="Sainath" links={links} />
       <div className="flex sem-selector-and-search-bar">
         <SemSelector semVal={semVal} handleSemVal={handleSemVal} />
         <SearchBar input={input} handleInputChange={handleInputChange} />

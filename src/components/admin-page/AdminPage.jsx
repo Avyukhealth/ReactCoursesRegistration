@@ -34,7 +34,7 @@ export default function AdminPage() {
 
   return (
     <div className="flex wrapper">
-      <Header name="Course Registration" userName="Sainath" links={links} />
+      <Header name="Admin Panel" userName="Sainath" links={links} />
       <div className="flex add-course-and-courses-table-div">
         <div className="add-courses-component-div">
           <AddCourse />
