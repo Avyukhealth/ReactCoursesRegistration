@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import "./AddCourse.css";
 
@@ -26,17 +26,29 @@ export default function AddCourse() {
   }
 
   function handleCoursesSubmit() {
+    if (
+      course.courseName === "" ||
+      course.credits === "" ||
+      course.professor === "" ||
+      course.limit === "" ||
+      course.eligibility === "" ||
+      course.sem === ""
+    ) {
+      alert("Fields cannot be empty");
+      return;
+    }
+
     let res = JSON.parse(localStorage.getItem("allCourses"));
     let id = 3424;
     let maxId = 1;
-    JSON.parse(localStorage.getItem("allCourses"))?.map((course) => {
+    JSON.parse(localStorage.getItem("allCourses"))?.forEach((course) => {
       maxId = Math.max(maxId, course?.courseId);
     });
     id = maxId + 1;
     res.push({ ...course, courseId: id });
     localStorage.setItem("allCourses", JSON.stringify(res));
     SetCourse(initialObject);
-    alert("Course Submitted Successfully!")
+    alert("Course Submitted Successfully!");
   }
 
   return (

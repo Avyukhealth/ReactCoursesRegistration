@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import AddCourse from "../add-course/AddCourse";
 import AdminCustomTable from "../adminCustomTable/AdminCustomTable";
 import Footer from "../footer/Footer";

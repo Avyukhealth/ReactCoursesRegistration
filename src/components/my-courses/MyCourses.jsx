@@ -1,4 +1,3 @@
-import React from "react";
 import Course from "../course/Course";
 import "./MyCourses.css";
 
