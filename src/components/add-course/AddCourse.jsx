@@ -11,7 +11,6 @@ export default function AddCourse() {
     eligibility: "",
     sem: "",
   };
-  // take all of the input into an object and submit it to localStorage
   const [course, SetCourse] = useState(initialObject);
 
   function handleChange(e) {
@@ -27,10 +26,7 @@ export default function AddCourse() {
   }
 
   function handleCoursesSubmit() {
-    // update the course in localStorage and setCourse to empty
     let res = JSON.parse(localStorage.getItem("allCourses"));
-
-    // id is max id + 1
     let id = 3424;
     let maxId = 1;
     JSON.parse(localStorage.getItem("allCourses"))?.map((course) => {

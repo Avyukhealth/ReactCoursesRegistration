@@ -9,21 +9,15 @@ import {
   Paper,
 } from "@mui/material";
 import { Selector } from "../sem-selector/SemSelector";
-import { createStore } from "redux";
-import { useCallback, useMemo } from "react";
 
 export default function CustomTable({ courses, handleSelectCourses }) {
-  const slow = useCallback(function () {
-    for (let i = 0; i < 10000000000; i++) {}
-  }, []);
-  
 
   return (
     <div
       style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}
     >
       <TableContainer
-        className="temp"
+        className="table-container"
         component={Paper}
         sx={{ maxWidth: "90vw" }}
       >

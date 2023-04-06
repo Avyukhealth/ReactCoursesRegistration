@@ -8,7 +8,7 @@ import "./CoursesPage.css";
 
 export default function CoursesPage() {
   const [semVal, setSemVal] = useState("All");
-  const [input, setInput] = useState(() => "");
+  const [input, setInput] = useState("");
   const [mySelectedCourses, setMySelectedCourses] = useState(() =>
     JSON.parse(localStorage.getItem("myCourses"))
   );
@@ -19,24 +19,13 @@ export default function CoursesPage() {
   );
 
   useEffect(() => {
-    let res = myTotalCourses;
-
-    res = res?.filter((course) => course.sem === semVal || semVal === "All");
-
-    res = res?.filter(
-      (course) =>
-        course.courseName.toLowerCase().includes(input.toLowerCase()) ||
-        course.professor.toLowerCase().includes(input.toLowerCase())
-    );
-
+    let res = JSON.parse(localStorage.getItem("myCourses")) || [];
     setMySelectedCourses(res);
-  }, [semVal, input, myTotalCourses]);
+  }, []);
 
   function handleSemVal(e) {
     setSemVal(e.target.value);
-    // set selected courses acc to them
     let myCourses = myTotalCourses;
-
     if (e.target.value === "All") setMySelectedCourses(myCourses);
     else {
       myCourses = myCourses?.filter((course) => course.sem === e.target.value);
@@ -48,17 +37,11 @@ export default function CoursesPage() {
     setInput(e.target.value);
   }
 
-  const headerProps = useMemo(() => ({
-    name: "My Courses",
-    links: ["Registration", "Admin"],
-    userName: "Sainath",
-    userIcon: "userIcon",
-  }), []);
+  const links = useMemo(() => ["Registration", "Admin"], []);
 
   return (
     <div className="flex wrapper">
-      <Header headerProps={headerProps} />
-
+      <Header name="Course Registration" userName="Sainath" links={links} />
       <div className="flex sem-selector-and-search-bar">
         <SemSelector semVal={semVal} handleSemVal={handleSemVal} />
         <SearchBar input={input} handleInputChange={handleInputChange} />

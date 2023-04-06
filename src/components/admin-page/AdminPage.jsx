@@ -10,13 +10,14 @@ export default function AdminPage() {
   const [allCourses, setAllcourses] = useState(
     () => JSON.parse(localStorage.getItem("allCourses")) || []
   );
-
   const [input, setInput] = useState("");
   const totalCoursesFromLocalStorage = useMemo(
     () => JSON.parse(localStorage.getItem("allCourses")),
     []
   );
-  useEffect(() => {
+  
+  function handleInputChange(e) {
+    setInput(e.target.value);
     let res = totalCoursesFromLocalStorage;
 
     res = res?.filter((course) => {
@@ -27,25 +28,13 @@ export default function AdminPage() {
       );
     });
     setAllcourses(res);
-  }, [input, totalCoursesFromLocalStorage]);
-
-  function handleInputChange(e) {
-    setInput(e.target.value);
   }
-
-  const headerProps = useMemo(
-    () => ({
-      name: "Admin Panel",
-      links: ["MyCourses", "Admin"],
-      userName: "Sainath",
-      userIcon: "userIcon",
-    }),
-    []
-  );
+  
+  const links = useMemo(() => ["MyCourses", "Admin"], []);
 
   return (
     <div className="flex wrapper">
-      <Header headerProps={headerProps} />
+      <Header name="Course Registration" userName="Sainath" links={links} />
       <div className="flex add-course-and-courses-table-div">
         <div className="add-courses-component-div">
           <AddCourse />
@@ -60,13 +49,11 @@ export default function AdminPage() {
               <SearchBar handleInputChange={handleInputChange} />
             </div>
           </div>
-
           <div className="custom-table-details">
             <AdminCustomTable courses={allCourses} />
           </div>
         </div>
       </div>
-
       <Footer />
     </div>
   );

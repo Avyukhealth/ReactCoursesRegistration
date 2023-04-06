@@ -18,9 +18,7 @@ export const Ul = styled.ul`
   list-style: none;
 `;
 
-
-let Header = ({headerProps}) => {
- const { name, links, userName } =  headerProps;
+let Header = ({name,userName,links}) => {
   return (
     <nav className="flex header">
       <div className="header-image">
@@ -28,12 +26,10 @@ let Header = ({headerProps}) => {
           <img src={image} style={{ width: "85px", height: "85px" }} />
         </Link>
       </div>
-
       <div className="flex header-name ">
         <FontAwesomeIcon icon={faBook} />
         <h1>{name}</h1>
       </div>
-
       <div className="flex header-links-and-profile">
         <Ul className="flex header-links">
           {links?.map((element) => {
@@ -57,7 +53,5 @@ let Header = ({headerProps}) => {
     </nav>
   );
 };
-
 Header = memo(Header);
-
 export default Header;

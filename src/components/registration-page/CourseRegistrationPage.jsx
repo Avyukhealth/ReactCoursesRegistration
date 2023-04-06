@@ -1,19 +1,11 @@
-import React, {
-  lazy,
-  Suspense,
-  useEffect,
-  useMemo,
-  useReducer,
-  useState,
-} from "react";
+import { useEffect, useMemo, useReducer } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import SearchBar from "../search-bar/SearchBar";
 import SemSelector from "../sem-selector/SemSelector";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import "./CourseRegistrationPage.css";
-
-const CustomTable = lazy(() => import("../table/Table"));
+import CustomTable from "../table/Table";
 
 const actionTypes = {
   CHNAGE_SEM_VALUE: "CHANGE_SEM_VALUE",
@@ -42,132 +34,106 @@ function reducer(state, action) {
 }
 
 export default function CourseRegistration() {
-  // const [input, setInput] = useState("");
-  const [selectedCourses, setSelectedCourses] = useState(() => []);
-
   const [state, dispatch] = useReducer(reducer, {
-    semVal: "None",
+    semVal: "All",
     input: "",
     courses: [],
     selectedCourses: [],
   });
 
   const totalCourses = useMemo(
-    () => JSON.parse(localStorage.getItem("allCourses")),
+    () => JSON.parse(localStorage.getItem("allCourses")) || [],
+    []
+  );
+  const myCoursesFromStorage = useMemo(
+    () => JSON.parse(localStorage.getItem("myCourses") || []),
     []
   );
 
-  // const totalCourses = JSON.parse(localStorage.getItem("allCourses"));
-
   useEffect(() => {
-    let res = totalCourses;
-
-    res = res?.filter((course) => {
-      return (
-        (course.sem === state.semVal || state.semVal === "All") &&
-        course?.courseName?.toLowerCase().includes(state.input.toLowerCase())
-      );
+    dispatch({
+      type: actionTypes.CHANGE_COURSES,
+      value: JSON.parse(localStorage.getItem("allCourses")),
     });
-    
-    dispatch({ type: actionTypes.CHANGE_COURSES, value: res });
-  }, [state.semVal, state.input, totalCourses]);
-
-  const myCoursesFromStorage = JSON.parse(localStorage.getItem("myCourses"));
+  }, []);
 
   function handleSemVal(e) {
-    //  if myCourses aleary have that sem then show alert
-    let allCourses = myCoursesFromStorage;
+    let myTotalCourses = myCoursesFromStorage;
     let enrolled = false;
-    allCourses?.forEach((course) => {
+    myTotalCourses?.forEach((course) => {
       if (course.sem === e?.target?.value) enrolled = true;
     });
-
-    if (state.semVal !== "All")
-      allCourses = allCourses?.filter((course) => course.sem === state.semVal);
 
     if (enrolled) {
       alert("sem is already enrolled");
     } else {
-      // setstate.semVal(e?.target.value);
+      let res = totalCourses;
+      res = totalCourses?.filter((course) => {
+        return (
+          (course.sem === e?.target?.value || e?.target?.value === "All") &&
+          course?.courseName?.toLowerCase().includes(state.input.toLowerCase())
+        );
+      });
       dispatch({ type: actionTypes.CHNAGE_SEM_VALUE, value: e?.target.value });
-      dispatch({ type: actionTypes.CHANGE_COURSES, value: allCourses });
-      // setCourses(allCourses);
+      dispatch({ type: actionTypes.CHANGE_COURSES, value: res });
     }
   }
 
   function handleInputChange(e) {
-    // setInput(e.target.value);
+    const input = e?.target.value;
+    let res = totalCourses?.filter((course) => {
+      return (
+        (course.sem === state.semVal || state.semVal === "All") &&
+        course?.courseName?.toLowerCase().includes(input?.toLowerCase())
+      );
+    });
     dispatch({ type: actionTypes.CHANGE_INPUT_VALUE, value: e?.target?.value });
+    dispatch({ type: actionTypes.CHANGE_COURSES, value: res });
   }
 
-  // when ever a courses is selected
   function handleSelectCourses(courseId, response) {
     if (response?.toLowerCase().includes("yes")) {
       let res = JSON.parse(localStorage.getItem("allCourses"));
-      res = res?.filter(
-        (course) => course.sem === state.semVal || state.semVal === "All"
-      );
       res = res?.filter((course) => course.courseId === courseId);
-
-      // setSelectedCourses((selectedCourses) => {
-      //   return [...selectedCourses, ...res];
-      // });
       dispatch({
         type: actionTypes.CHANGE_SELECTED_COURSES,
-        value: [...selectedCourses, ...res],
+        value: [...state.selectedCourses, ...res],
       });
     } else {
       let res = state.selectedCourses;
       res = res?.filter((course) => course.courseId !== courseId);
-      // setSelectedCourses({ ...res });
       dispatch({ type: actionTypes.CHANGE_SELECTED_COURSES, value: res });
     }
   }
 
   function handleCoursesSubmit() {
-    // update them to my Course
     if (state.semVal === "All") {
       alert("Cannot submit All Courses");
       return;
     }
 
-    let res = JSON.parse(localStorage.getItem("myCourses"));
-
-    // update the res with new courses
+    let res = myCoursesFromStorage;
     res = [...res, ...state.selectedCourses];
     localStorage.setItem("myCourses", JSON.stringify(res));
     if (state.selectedCourses?.length === 0)
       alert("Please select courses to Register");
     else alert("Registration Successful");
-    // setstate.semVal("All");
     dispatch({ type: actionTypes.CHNAGE_SEM_VALUE, value: "All" });
   }
 
-  const headerProps = useMemo(
-    () => ({
-      name: "Course Registration",
-      links: ["MyCourses", "Admin"],
-      userName: "Sainath",
-      userIcon: "userIcon",
-    }),
-    []
-  );
+  const links = useMemo(() => ["MyCourses", "Admin"], []);
 
-  //  styled comp for button
   return (
     <div className="flex wrapper">
-      <Header headerProps={headerProps} />
+      <Header name="Course Registration" userName="Sainath" links={links} />
       <div className="flex sem-selector-and-search-bar">
         <SemSelector semVal={state.semVal} handleSemVal={handleSemVal} />
         <SearchBar input={state.input} handleInputChange={handleInputChange} />
       </div>
-
-      <Suspense fallback={<div>Loading</div>}>
-        <CustomTable
-          handleSelectCourses={handleSelectCourses}
-          courses={state.courses}
-        />
-      </Suspense>
+      <CustomTable
+        handleSelectCourses={handleSelectCourses}
+        courses={state.courses}
+      />
       <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
       <Footer />
     </div>

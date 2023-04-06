@@ -17,7 +17,7 @@ export default function AdminCustomTable({ courses  }) {
       style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}
     >
       <TableContainer
-        className="temp"
+        className="table-container"
         component={Paper}
         sx={{ maxWidth: "90vw" }}
       >
