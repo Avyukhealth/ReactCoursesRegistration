@@ -18,11 +18,6 @@ export default function CoursesPage() {
     []
   );
 
-  useEffect(() => {
-    let res = JSON.parse(localStorage.getItem("myCourses")) || [];
-    setMySelectedCourses(res);
-  }, []);
-
   function handleSemVal(e) {
     setSemVal(e.target.value);
     let myCourses = myTotalCourses;
@@ -55,11 +50,12 @@ export default function CoursesPage() {
         <SemSelector semVal={semVal} handleSemVal={handleSemVal} />
         <SearchBar input={input} handleInputChange={handleInputChange} />
       </div>
-
-      {/* we need to make a component to courses and Course */}
-      <MyCourses myCourses={mySelectedCourses} />
-
-      <Footer />
+      <div className="my-courses">
+        <MyCourses myCourses={mySelectedCourses} />
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

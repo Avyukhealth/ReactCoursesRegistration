@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer } from "react";
+import { useMemo, useReducer } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import SearchBar from "../search-bar/SearchBar";
@@ -35,7 +35,7 @@ function reducer(state, action) {
 
 export default function CourseRegistration() {
   const [state, dispatch] = useReducer(reducer, {
-    semVal: "All",
+    semVal: "None",
     input: "",
     courses: [],
     selectedCourses: [],
@@ -49,13 +49,6 @@ export default function CourseRegistration() {
     () => JSON.parse(localStorage.getItem("myCourses") || []),
     []
   );
-
-  useEffect(() => {
-    dispatch({
-      type: actionTypes.CHANGE_SELECTED_COURSES,
-      value: JSON.parse(localStorage.getItem("allCourses")) || [],
-    });
-  }, []);
 
   function handleSemVal(e) {
     let myTotalCourses = myCoursesFromStorage;
@@ -121,7 +114,7 @@ export default function CourseRegistration() {
     dispatch({ type: actionTypes.CHNAGE_SEM_VALUE, value: "All" });
   }
 
-  const links = useMemo(() => ["MyCourses", "Admin"], []);
+  const links = useMemo(() => ["MyCourses", "Admin"], []); 
 
   return (
     <div className="flex wrapper">
@@ -130,12 +123,18 @@ export default function CourseRegistration() {
         <SemSelector semVal={state.semVal} handleSemVal={handleSemVal} />
         <SearchBar input={state.input} handleInputChange={handleInputChange} />
       </div>
-      <CustomTable
-        handleSelectCourses={handleSelectCourses}
-        courses={state.courses}
-      />
-      <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
-      <Footer />
+      <div className="courses-table">
+        <CustomTable
+          handleSelectCourses={handleSelectCourses}
+          courses={state.courses}
+        />
+      </div>
+      <div className="courses-submit-button">
+        <SubmitButton handleCoursesSubmit={handleCoursesSubmit} />
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }

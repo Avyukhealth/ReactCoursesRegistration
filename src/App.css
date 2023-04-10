@@ -30,10 +30,9 @@ button:hover,
   border-radius: 50%;
 }
 
-
-.theme-button-main{
+.theme-button-main {
   width: min-content;
-  background-color:  #425e99;
+  background-color: #425e99;
   border-radius: 10%;
   padding: 12px;
   position: fixed;
@@ -42,7 +41,29 @@ button:hover,
   color: white;
 }
 
-[data-theme="dark"] .theme-button-main{
-background-color:  black ;
-color: #f5a236;
+[data-theme="dark"] .theme-button-main {
+  background-color: black;
+  color: #f5a236;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app {
+    background: #232530;
+    background: -webkit-linear-gradient(top left, #232530, #3a3e50);
+    background: -moz-linear-gradient(top left, #232530, #3a3e50);
+    background: linear-gradient(to bottom right, #232530, #3a3e50);
+  }
+  * {
+    color: rgb(239, 179, 179) !important;
+  }
+  button {
+    color: black !important;
+  }
+
+  .materia-ui-table {
+    background: #232530;
+    background: -webkit-linear-gradient(top left, #232530, #3a3e50);
+    background: -moz-linear-gradient(top left, #232530, #3a3e50);
+    background: linear-gradient(to bottom right, #232530, #3a3e50);
+  }
 }
