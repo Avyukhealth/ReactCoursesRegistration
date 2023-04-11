@@ -1,7 +1,7 @@
 import { useState } from "react";
-import AdminPage from "./components/admin-page/AdminPage";
-import CourseRegistrationPage from "./components/registration-page/CourseRegistrationPage";
-import CoursesPage from "./components/courses-page/CoursesPage";
+import AdminPage from "./components/adminPage/AdminPage";
+import CourseRegistrationPage from "./components/registrationPage/CourseRegistrationPage";
+import CoursesPage from "./components/coursesPage/CoursesPage";
 import "./App.css";
 import { Routes } from "react-router-dom";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -15,8 +15,8 @@ export default function App() {
   }
 
   return (
-    <div class="app" data-theme={theme}>
-      <div class="Routes">
+    <div className="app" data-testid="app" data-theme={theme}>
+      <div className="Routes">
         <Router>
           <Routes path="/">
             <Route path="/myCourses" element={<CoursesPage />} />
@@ -25,7 +25,7 @@ export default function App() {
           </Routes>
         </Router>
       </div>
-      <div class="theme-button">
+      <div className="theme-button">
         <button onClick={handleTheme} className="theme-button-main">
           Change Theme
         </button>

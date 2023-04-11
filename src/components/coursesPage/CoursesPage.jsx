@@ -1,9 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
-import MyCourses from "../my-courses/MyCourses";
-import SearchBar from "../search-bar/SearchBar";
-import SemSelector from "../sem-selector/SemSelector";
+import MyCourses from "../myCourses/MyCourses";
+import SearchBar from "../searchBar/SearchBar";
+import SemSelector from "../semSelector/SemSelector";
 import "./CoursesPage.css";
 
 export default function CoursesPage() {

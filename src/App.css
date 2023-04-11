@@ -46,7 +46,7 @@ button:hover,
   color: #f5a236;
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   .app {
     background: #232530;
     background: -webkit-linear-gradient(top left, #232530, #3a3e50);

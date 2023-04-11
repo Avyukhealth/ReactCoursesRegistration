@@ -21,6 +21,7 @@ export default function SemSelector({ semVal, handleSemVal }) {
           name="semVal"
           id="semVal"
           onChange={(e) => handleSemVal(e)}
+          data-testid="semVal"
         >
           <option value="none">None</option>
           <option value="All">All</option>

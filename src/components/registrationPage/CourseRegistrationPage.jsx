@@ -1,8 +1,8 @@
 import { useMemo, useReducer } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
-import SearchBar from "../search-bar/SearchBar";
-import SemSelector from "../sem-selector/SemSelector";
+import SearchBar from "../searchBar/SearchBar";
+import SemSelector from "../semSelector/SemSelector";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import "./CourseRegistrationPage.css";
 import CustomTable from "../table/Table";
@@ -42,11 +42,11 @@ export default function CourseRegistration() {
   });
 
   const totalCourses = useMemo(
-    () => JSON.parse(localStorage.getItem("allCourses")) || [],
+    () => JSON.parse(localStorage.getItem("allCourses") ||  "[]"),
     []
   );
   const myCoursesFromStorage = useMemo(
-    () => JSON.parse(localStorage.getItem("myCourses") || []),
+    () => JSON.parse(localStorage.getItem("myCourses") || "[]"),
     []
   );
 
@@ -114,7 +114,7 @@ export default function CourseRegistration() {
     dispatch({ type: actionTypes.CHNAGE_SEM_VALUE, value: "All" });
   }
 
-  const links = useMemo(() => ["MyCourses", "Admin"], []); 
+  const links = useMemo(() => ["MyCourses", "Admin"], []);
 
   return (
     <div className="flex wrapper">

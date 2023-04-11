@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
-import AddCourse from "../add-course/AddCourse";
+import AddCourse from "../addCourse/AddCourse";
 import AdminCustomTable from "../adminCustomTable/AdminCustomTable";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
-import SearchBar from "../search-bar/SearchBar";
+import SearchBar from "../searchBar/SearchBar";
 import "./AdminPage.css";
 
 export default function AdminPage() {

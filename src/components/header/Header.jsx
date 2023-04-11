@@ -25,13 +25,13 @@ let Header = ({name,userName,links}) => {
         <Link to={"/"}>
           <img src={image} style={{ width: "85px", height: "85px" }} />
         </Link>
-      </div>
+    </div>
       <div className="flex header-name ">
         <FontAwesomeIcon icon={faBook} />
         <h1>{name}</h1>
       </div>
       <div className="flex header-links-and-profile">
-        <Ul className="flex header-links">
+        <Ul className="flex header-links" data-testid="flex header-links">
           {links?.map((element) => {
             return (
               <div key={element}>

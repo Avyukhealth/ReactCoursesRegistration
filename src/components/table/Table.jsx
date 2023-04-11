@@ -8,7 +8,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import { Selector } from "../sem-selector/SemSelector";
+import { Selector } from "../semSelector/SemSelector";
 
 export default function CustomTable({ courses, handleSelectCourses }) {
 
