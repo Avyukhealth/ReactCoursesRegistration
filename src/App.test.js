@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
 
 describe("App component", () => {
   test("renders CoursesPage by default", () => {
@@ -12,7 +13,7 @@ describe("App component", () => {
     render(<App />);
     let res = screen.getByRole("link", { name: /MyCourses/i });
     fireEvent.click(screen.getByRole("link", { name: /MyCourses/i }));
-    console.log("abcd is : " +  res);
+    console.log("abcd is : " + res);
     expect(screen.getByText(/My Courses/i)).toBeInTheDocument();
   });
 
@@ -22,7 +23,6 @@ describe("App component", () => {
     // userEvent.click(screen.getByRole("link", { name: /admin/i }));
     expect(screen.getByText(/admin panel/i)).toBeInTheDocument();
   });
-
 
   test("Checking weather footer renders or not", () => {
     render(<App />);

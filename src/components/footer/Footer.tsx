@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import "./Footer.css";
 import styled from "styled-components";
 
@@ -12,6 +12,6 @@ let Footer = () => {
   );
 };
 
-Footer = React.memo(Footer);
+let MemoFooter = React.memo(Footer);
 
-export default Footer;
+export default MemoFooter;

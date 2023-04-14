@@ -1,4 +1,6 @@
+import React from "react";
 import "./AdminCustomTable.css";
+import AdminCustomTableProps from '../../models/adminCustomTable';
 import {
   Table,
   TableBody,
@@ -9,7 +11,7 @@ import {
   Paper,
 } from "@mui/material";
 
-export default function AdminCustomTable({ courses  }) {
+export default function AdminCustomTable({ courses }: AdminCustomTableProps) {
   console.log(courses);
   return (
     <div

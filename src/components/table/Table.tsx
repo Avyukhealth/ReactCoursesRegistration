@@ -1,3 +1,4 @@
+import React from "react";
 import "./Table.css";
 import {
   Table,
@@ -9,9 +10,10 @@ import {
   Paper,
 } from "@mui/material";
 import { Selector } from "../semSelector/SemSelector";
+import CustomTableProps from "../../models/customTableProps";
+import Event from "../../models/event";
 
-export default function CustomTable({ courses, handleSelectCourses }) {
-
+export default function CustomTable({ courses, handleSelectCourses }: CustomTableProps) {
   return (
     <div
       style={{ display: "flex", justifyContent: "center", maxHeight: "50vh" }}
@@ -36,21 +38,22 @@ export default function CustomTable({ courses, handleSelectCourses }) {
             </TableRow>
           </TableHead>
           <TableBody className="materia-ui-table-body">
-            {courses?.map((row) => (
-              <TableRow key={row.courseId} className="materia-ui-table-row">
-                <TableCell>{row.courseName}</TableCell>
-                <TableCell>{row.credits}</TableCell>
-                <TableCell>{row.professor}</TableCell>
-                <TableCell>{row.limit}</TableCell>
-                <TableCell>{row.eligibility}</TableCell>
+            {courses?.map((course) => (
+              <TableRow key={course.courseId} className="materia-ui-table-row">
+                <TableCell>{course.courseName}</TableCell>
+                <TableCell>{course.credits}</TableCell>
+                <TableCell>{course.professor}</TableCell>
+                <TableCell>{course.limit}</TableCell>
+                <TableCell>{course.eligibility}</TableCell>
                 <TableCell>
                   <Selector
-                    onChange={(e) => {
+                    onChange={(e: Event) => {
+                      console.log("channnn")
                       handleSelectCourses(e.target.id, e.target.value);
                     }}
                     name="course-select"
-                    id={row.courseId}
-                    key={row.courseId}
+                    id={course.courseId}
+                    key={course.courseId}
                   >
                     <option value="no">No</option>
                     <option value="yes">Yes</option>
@@ -61,6 +64,6 @@ export default function CustomTable({ courses, handleSelectCourses }) {
           </TableBody>
         </Table>
       </TableContainer>
-    </div>
+    </div >
   );
 }

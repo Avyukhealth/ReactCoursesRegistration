@@ -1,3 +1,4 @@
+import React from "react";
 import { memo } from "react";
 import styled from "styled-components";
 import "./Header.css";
@@ -6,6 +7,7 @@ import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import image from "../../images/logo.png";
+import HeaderProps from "../../models/headerProps";
 
 export const Ul = styled.ul`
   li {
@@ -18,14 +20,14 @@ export const Ul = styled.ul`
   list-style: none;
 `;
 
-let Header = ({name,userName,links}) => {
+const Header = ({ name, userName, links }: HeaderProps) => {
   return (
     <nav className="flex header">
       <div className="header-image">
         <Link to={"/"}>
-          <img src={image} style={{ width: "85px", height: "85px" }} />
+          <img src={image} style={{ width: "85px", height: "85px" }} alt="Logo here" />
         </Link>
-    </div>
+      </div>
       <div className="flex header-name ">
         <FontAwesomeIcon icon={faBook} />
         <h1>{name}</h1>
@@ -53,5 +55,5 @@ let Header = ({name,userName,links}) => {
     </nav>
   );
 };
-Header = memo(Header);
-export default Header;
+const MemoHeader = memo(Header);
+export default MemoHeader;

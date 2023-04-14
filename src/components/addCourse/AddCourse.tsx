@@ -1,6 +1,15 @@
+import React from "react";
 import { useState } from "react";
 import SubmitButton from "../SubmitButton/SubmitButton";
 import "./AddCourse.css";
+import Event from "../../models/event";
+import Course from "../../models/course";
+
+function isCourseKey(key: string, course: Course): key is keyof Course {
+  return key in Object.keys(course);
+}
+
+
 
 export default function AddCourse() {
   const initialObject = {
@@ -10,19 +19,27 @@ export default function AddCourse() {
     limit: "",
     eligibility: "",
     sem: "",
+    courseId: ""
   };
-  const [course, SetCourse] = useState(initialObject);
+  const [course, SetCourse] = useState<Course>(initialObject);
 
-  function handleChange(e) {
-    let obj = {};
-    let a = e.target.name,
-      b = e.target.value;
+  function handleChange(e: Event | null) {
+    if (!e) return;
+    let obj: Course = { ...course };
+    if (typeof e.target.name !== 'string') return;
+    if (typeof e.target.value !== 'string') return;
 
-    obj[a] = b;
-    SetCourse({
-      ...course,
-      ...obj,
-    });
+    let a: string = e.target.name;
+    let b: string = e.target.value;
+    if (!a || !b) return;
+    if (isCourseKey(a, course)) {
+      obj[a] = b;
+      SetCourse({
+        ...course,
+        ...obj,
+      });
+    }
+    else SetCourse(initialObject);
   }
 
   function handleCoursesSubmit() {
@@ -38,11 +55,11 @@ export default function AddCourse() {
       return;
     }
 
-    let res = JSON.parse(localStorage.getItem("allCourses"));
+    let res = JSON.parse(localStorage.getItem("allCourses") || "[]");
     let id = 3424;
     let maxId = 1;
-    JSON.parse(localStorage.getItem("allCourses"))?.forEach((course) => {
-      maxId = Math.max(maxId, course?.courseId);
+    JSON.parse(localStorage.getItem("allCourses") || "[]")?.forEach((course: Course) => {
+      maxId = Math.max(maxId, Number(course?.courseId));
     });
     id = maxId + 1;
     res.push({ ...course, courseId: id });

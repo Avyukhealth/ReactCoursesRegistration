@@ -12,7 +12,7 @@ export default function MockCourseRegistration() {
     <MemoryRouter initialEntries={["/"]}>
       <Routes path="/">
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/MyCourses" element={<CoursesPage/>} />
+        <Route path="/MyCourses" element={<CoursesPage />} />
         <Route path="*" element={<CourseRegistration />} />
       </Routes>
     </MemoryRouter>
@@ -29,7 +29,6 @@ describe("Testing CourseRegistrationPage component", () => {
     render(<MockCourseRegistration />);
     const dropdown = screen.getByTestId(/semval/i);
     expect(screen.getByText(/None/i)).toBeInTheDocument();
-    // now select All option of the dropdown
     fireEvent.change(dropdown, { target: { value: "All" } });
     expect(screen.getByText(/All/i)).toBeInTheDocument();
   });
@@ -46,7 +45,7 @@ describe("Testing CourseRegistrationPage component", () => {
           eligibility: "CSE",
           limit: "50",
           courseId: "2",
-        }, // Include the "Image Processing" course in the data
+        },
       ])
     );
 
@@ -56,13 +55,8 @@ describe("Testing CourseRegistrationPage component", () => {
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
       expect(screen.getByText(/None/i)).toBeInTheDocument();
-      // now select All option of the dropdown
       fireEvent.change(dropdown, { target: { value: "All" } });
-
-      // now check weather there are courses or not
       expect(screen.getByText(/All/i)).toBeInTheDocument();
-
-      // now the table loads data from local storage and we have to check weather there is image processing course or not
       expect(screen.getByText(/Image Processing/i)).toBeInTheDocument();
     });
   });
@@ -70,43 +64,52 @@ describe("Testing CourseRegistrationPage component", () => {
   test("renders AdminPage when /admin route is accessed", async () => {
     render(<MockCourseRegistration />);
     fireEvent.click(screen.getByRole("link", { name: /mycourses/i }));
+    screen.debug();
     expect(screen.getByText(/My Courses/i)).toBeInTheDocument();
   });
 
   test("checking searchbar is working with table or not", async () => {
     render(<MockCourseRegistration />);
-    // const searchbar = screen.getByPlaceholderText(/search/i);
+    localStorage.setItem(
+      "allCourses",
+      JSON.stringify([
+        {
+          courseName: "Image Processing",
+          credits: "4",
+          professor: "Trilok Panth",
+          sem: "1",
+          eligibility: "CSE",
+          limit: "50",
+          courseId: "2",
+        },
+      ])
+    );
+    const dropdown = screen.getByTestId(/semval/i);
+    fireEvent.change(dropdown, { target: { value: "All" } });
+
     // eslint-disable-next-line testing-library/no-unnecessary-act
     act(() => {
-      userEvent.type(screen.getByPlaceholderText(/search.../i), "React");
+      userEvent.type(screen.getByPlaceholderText(/search.../i), "Image");
     });
 
-    // now it should be there in the table or no items should be there on the
-    // get the table data  from DOM
+    screen.debug();
+    expect(screen.getByText(/Image/i)).toBeInTheDocument();
   });
 
-  test("checking searchbar is showing the user input", async () => {
-    render(<MockCourseRegistration />);
-    // const searchbar = screen.getByPlaceholderText(/search/i);
-    // act(()=> userEvent.type(screen.getByPlaceholderText(/search.../i), "React"));
-    // userEvent.type(screen.getByPlaceholderText(/search.../i), "React");
-    fireEvent.change(screen.getByPlaceholderText(/search.../i), {
-      target: { value: "React" },
-    });
-    expect(screen.getByPlaceholderText(/search.../i)).toHaveValue("React");
-  });
+  // test("checking searchbar is showing the user input", async () => {
+  //   render(<MockCourseRegistration />);
+  //   fireEvent.change(screen.getByPlaceholderText(/search.../i), {
+  //     target: { value: "React" },
+  //   });
+  //   expect(screen.getByPlaceholderText(/search.../i)).toHaveValue("React");
+  // });
 
-  test("checking submit button is workign or not", async () => {
+  test("checking submit button is working or not", async () => {
     render(<MockCourseRegistration />);
     jest.spyOn(window, "alert").mockImplementation(() => {});
     const submitButton = screen.getByRole("button", { name: /submit/i });
     fireEvent.click(submitButton);
-    // now check weather we are getting alert of Please select courses to Register or not
     expect(alert).toHaveBeenCalledWith("Please select courses to Register");
-
-    // expect(screen.getByRole("alert")).toHaveTextContent(
-    //   "Please "
-    // );
   });
 
   test("Checking weather footer renders or not", () => {

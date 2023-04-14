@@ -1,5 +1,8 @@
+import React from "react";
 import styled from "styled-components";
 import "./SemSelector.css";
+import SemSelectorProps from "../../models/semSelectorProps";
+import Event from "../../models/event";
 
 export const Selector = styled.select`
   background-color: #223243;
@@ -11,7 +14,7 @@ export const Selector = styled.select`
   color: rgb(227, 224, 218);
 `;
 //
-export default function SemSelector({ semVal, handleSemVal }) {
+export default function SemSelector({ semVal, handleSemVal }: SemSelectorProps) {
   return (
     <div className="sem-selector">
       <span>
@@ -20,7 +23,7 @@ export default function SemSelector({ semVal, handleSemVal }) {
           value={semVal}
           name="semVal"
           id="semVal"
-          onChange={(e) => handleSemVal(e)}
+          onChange={(e: Event) => handleSemVal(e)}
           data-testid="semVal"
         >
           <option value="none">None</option>
