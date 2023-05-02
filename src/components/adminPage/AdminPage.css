@@ -1,3 +1,5 @@
+/* Learn and implement using SCSS */
+
 .add-course-and-courses-table-div {
   gap: 16px;
   padding: 24px;
@@ -12,17 +14,16 @@
   flex: 2.5;
 }
 
-
-.wrapper{
-    flex-direction: column;
+.wrapper {
+  flex-direction: column;
 }
 
-.table-and-search-bar{
-    flex: 3;
-    gap: 20px;
-    flex-direction: column;
+.table-and-search-bar {
+  flex: 3;
+  gap: 20px;
+  flex-direction: column;
 }
 
-.table-heading-and-search-bar{
-    justify-content: space-around;
+.table-heading-and-search-bar {
+  justify-content: space-around;
 }

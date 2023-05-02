@@ -13,18 +13,18 @@ export default function AdminPage() {
   const [allCourses, setAllcourses] = useState<Courses>(
     () => JSON.parse(localStorage.getItem("allCourses") || "[]") || []
   );
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>(""); // searchText
   const totalCoursesFromLocalStorage = useMemo<Courses>(
     () => JSON.parse(localStorage.getItem("allCourses") || "[]"),
     []
   );
 
-  function handleInputChange(e: Event | null) {
+  function handleInputChange(e: Event | null) { // rename to event
     if (!e) return;
     setInput(e.target.value);
     let res = totalCoursesFromLocalStorage;
 
-    let temp = res?.filter((course) => {
+    let temp = res?.filter((course) => { // rename temp to something meaningfull
       return (
         course?.courseName?.toLowerCase().includes(input.toLowerCase()) ||
         course?.professor?.toLowerCase().includes(input.toLowerCase()) ||

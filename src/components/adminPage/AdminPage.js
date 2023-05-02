@@ -13,7 +13,7 @@ const SearchBar_1 = __importDefault(require("../searchBar/SearchBar"));
 require("./AdminPage.css");
 function AdminPage() {
     const [allCourses, setAllcourses] = (0, react_2.useState)(() => JSON.parse(localStorage.getItem("allCourses") || "[]") || []);
-    const [input, setInput] = (0, react_2.useState)("");
+    const [input, setInput] = (0, react_2.useState)(""); // searchText
     const totalCoursesFromLocalStorage = (0, react_2.useMemo)(() => JSON.parse(localStorage.getItem("allCourses") || "[]"), []);
     function handleInputChange(e) {
         if (!e)

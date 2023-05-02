@@ -67,7 +67,8 @@ function AddCourse() {
     }
     return (react_1.default.createElement("div", { className: "flex add-course-div" },
         react_1.default.createElement("div", { className: "add-course-div-heading" },
-            react_1.default.createElement("h3", null, "Add Course")),
+            react_1.default.createElement("h3", null, "Add Course"),
+            " "),
         react_1.default.createElement("input", { name: "courseName", type: "text", onChange: handleChange, value: course.courseName, placeholder: "Enter Course Name" }),
         react_1.default.createElement("input", { name: "credits", onChange: handleChange, type: "number", value: course.credits, placeholder: "Enter Credits" }),
         react_1.default.createElement("input", { name: "professor", onChange: handleChange, type: "text", value: course.professor, placeholder: "Enter Professor" }),

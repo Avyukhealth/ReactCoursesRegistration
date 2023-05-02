@@ -9,8 +9,6 @@ function isCourseKey(key: string, course: Course): key is keyof Course {
   return key in Object.keys(course);
 }
 
-
-
 export default function AddCourse() {
   const initialObject = {
     courseName: "",
@@ -71,7 +69,7 @@ export default function AddCourse() {
   return (
     <div className="flex add-course-div">
       <div className="add-course-div-heading">
-        <h3>Add Course</h3>
+        <h3>Add Course</h3> {/* add classname */}
       </div>
       <input
         name="courseName"

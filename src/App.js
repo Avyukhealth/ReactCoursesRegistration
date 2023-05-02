@@ -28,11 +28,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importStar(require("react"));
 const AdminPage_1 = __importDefault(require("./components/adminPage/AdminPage"));
-const CourseRegistrationPage_1 = __importDefault(require("./components/registrationPage/CourseRegistrationPage"));
 const CoursesPage_1 = __importDefault(require("./components/coursesPage/CoursesPage"));
 require("./App.css");
 const react_router_dom_1 = require("react-router-dom");
 const react_router_dom_2 = require("react-router-dom");
+const CourseRegisttrationContainer_1 = __importDefault(require("./components/registrationPage/CourseRegisttrationContainer"));
 function App() {
     const [theme, setTheme] = (0, react_1.useState)({ themeVal: "light" });
     function handleTheme() {
@@ -48,7 +48,7 @@ function App() {
                 react_1.default.createElement(react_router_dom_1.Routes, null,
                     react_1.default.createElement(react_router_dom_2.Route, { path: "/myCourses", element: react_1.default.createElement(CoursesPage_1.default, null) }),
                     react_1.default.createElement(react_router_dom_2.Route, { path: "/admin", element: react_1.default.createElement(AdminPage_1.default, null) }),
-                    react_1.default.createElement(react_router_dom_2.Route, { path: "/*", element: react_1.default.createElement(CourseRegistrationPage_1.default, null) })))),
+                    react_1.default.createElement(react_router_dom_2.Route, { path: "/*", element: react_1.default.createElement(CourseRegisttrationContainer_1.default, null) })))),
         react_1.default.createElement("div", { className: "theme-button" },
             react_1.default.createElement("button", { onClick: handleTheme, className: "theme-button-main" }, "Change Theme"))));
 }
